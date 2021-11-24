@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -20,7 +21,7 @@ func main() {
 	}
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
-
+	fmt.Printf("Connected on: [::]:" + port)
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
 
